@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>D7B | Crime Management System</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <meta name="robots" content="noindex">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="fixed-top" style="background-color: rgb(173, 173, 247);">
+        <div class="d-flex justify-content-center align-items-center mb-3" style="margin-top: 14px; background-color: rgb(173, 173, 247);">
+            <a class="drawer-brand-circle mr-2">C</a>
+            <h2 class="ml-2 text-bg mb-0"><strong>Crime Reporting and Management System</strong></h2>
+        </div>
+
+        
+    </div>
+
+    <!-- main content -->
+    <div class="top-navbar">
+
+        <div class="jumbotron fixed-banner">
+            <div class="fixed-banner-image-wrapper">
+                <img src="{% static 'assets/images/Crimetape-homepage.jpg' %}" alt="property">
+            </div>
+            <div class="container">
+                <div class="text-center">
+                    <div class="pb-3">
+                        <h1 class="display-3 mb-0">Report a Crime</h1>
+                        <p class="lead">Our Mission, City Without Crime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container container--wide">
+
+            <div class="card card-body p-2">
+                <div class="row row-projects">
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <h4 style="color: #3783b5 ; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;">New to the website?</h4>
+                        <i class="material-icons">person_add</i>
+                        <a href="{% url 'register' %}" style="color: #25364a ; margin-top: 20px ;">  Register here</a>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-6">
+                        <h4 style="color: #3783b5 ; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;">Already have an account?</h4>
+                        <i class="material-icons">person_outline</i>
+                        <a href="{% url 'login' %}" style="color: #25364a ; ">  Login here</a>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+
+    <!-- // END drawer -->
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- APP -->
+    <script src="{% static 'assets/js/color_variables.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+    <script>
+        (function() {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+
+
+</body>
+
+</html>

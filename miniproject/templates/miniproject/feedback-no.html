@@ -1,0 +1,140 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>D7B | Feedback</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <link type="text/css" href="{% static 'assets/css/vendor-morris.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-datepicker.css' %}" rel="stylesheet">
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-switch.css' %}" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px"
+        data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!--header-layout-->
+            <div
+                class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!--header-->
+
+                {% include 'miniproject/header.html' %}
+
+                <!--content-->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+
+                    <!--0main content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div style="float: right;">           
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Feedback</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12"> 
+                                <br><br><br>
+                                <div class="text-center">
+                                    <div class="form-row">
+                                        <h3>You can fill the form again on : {{date}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Main Content closes -->
+            </div>
+        </div>
+        <!--// END drawer-layout__content-->
+
+        <!--LEFT DRAWER-->
+        
+        {% include 'miniproject/sidebar.html' %}
+
+    </div>
+    <!-- // END drawer-layout -->
+
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+
+    <script>
+        (function () {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+
+    <script src="{% static 'assets/vendor/morris.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/raphael.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/datepicker.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-switch.min.js' %}"></script>
+
+    <script>
+        $("input[name='bootstrap-switch']").bootstrapSwitch();
+    </script>
+
+</body>
+
+</html>

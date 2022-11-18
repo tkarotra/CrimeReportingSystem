@@ -1,0 +1,480 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Form</title>
+
+    
+    <link type="text/css" href="{% static 'assets/css/vendor-morris.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-datepicker.css' %}" rel="stylesheet">
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px" data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!--header-layout-->
+            <div class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!--header--> 
+                <div class="mdk-header js-mdk-header bg-primary" data-fixed>
+                    <div class="mdk-header__content">
+
+                        <nav class="navbar navbar-expand-md bg-primary navbar-dark d-flex-none">
+                            <button class="btn btn-link text-white pl-0" type="button" data-toggle="sidebar">
+                                <i class="material-icons align-middle md-36">dehaze</i>
+                            </button>
+                            <div class="page-title m-0">Menu</div>
+
+                            <div class="collapse navbar-collapse" id="mainNavbar">
+                                <ul class="navbar-nav ml-auto align-items-center">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" style="color: white ; font-size: 13px">Home</a></li>
+                                            <li class="breadcrumb-item active"><a style="color: black ; font-size: 13px">Form</a></li>
+                                        </ol>
+                                    </nav>
+                                    <li class="nav-item nav-divider">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle dropdown-clear-caret" data-toggle="sidebar" data-target="#user-drawer">
+                                                <i class="material-icons md-18 align-middle">person</i> Profile
+                                                <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid rounded-circle ml-1" width="35" alt="">
+                                            </a>
+                                        </li>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <!--content-->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+                    
+                    <!--0main content-->
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h4 class="card-title" style="text-align:left">
+                                            Form Table
+                                        </h4>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#largeModal">File form</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="text-center">#</th>
+                                                <th scope="col" class="text-center">First Name</th>
+                                                <th scope="col" class="text-center">Last Name</th>
+                                                <th scope="col" class="text-center">Username</th>
+                                                <th scope="col" class="text-center">Role</th>
+                                                <th scope="col" class="text-center">Tasks completion</th>
+                                                <th scope="col" class="text-center">Earnings</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th class="align-middle text-center" scope="row">1</th>
+                                                <td class="align-middle text-center">Steven</td>
+                                                <td class="align-middle text-center">Short</td>
+                                                <td class="align-middle text-center">@steve</td>
+                                                <td class="align-middle text-center">
+                                                    <select class="custom-select">
+                                                        <option selected>Admin</option>
+                                                        <option value="1">Moderator</option>
+                                                        <option value="2">User</option>
+                                                        <option value="3">VIP</option>
+                                                    </select>
+                                                </td>
+                                                <td class="align-middle text-center">xyzzz</td>
+                                                <td class="align-middle text-center">szthbf</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--// END drawer-layout__content-->
+
+        <!--LEFT DRAWER-->
+        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+            <div class="mdk-drawer__content">
+                <div class="mdk-drawer__inner" data-simplebar data-simplebar-force-enabled="true">
+
+                    <nav class="drawer  drawer--dark">
+                        <div class="drawer-spacer">
+                            <div class="media align-items-center">
+                                <a href="index.html" class="drawer-brand-circle mr-2">C</a>
+                                <div class="media-body">
+                                    <a href="index.html" class="h5 m-0 text-link">......</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--HEADING-->
+                        <div class="py-2 drawer-heading">
+                            Dashboard
+                        </div>
+                        <!--DASHBOARDS MENU--> 
+                        <ul class="drawer-menu" id="dasboardMenu" data-children=".drawer-submenu">
+                            <li class="drawer-menu-item ">
+                                <a href="index.html"><i class="material-icons">create</i><span class="drawer-menu-text">File an FIR</span></a>
+                            </li>
+                            <li class="drawer-menu-item">
+                                <a href="projects.html"><i class="material-icons">person_pin_circle</i><span class="drawer-menu-text">Missing Persons</span></a>
+                            </li>
+                            <li class="drawer-menu-item ">
+                                <a href="retail.html"><i class="material-icons">priority_high</i><span class="drawer-menu-text">Wanted Criminals List</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- // END drawer -->
+
+        <!-- drawer -->
+        <div class="mdk-drawer js-mdk-drawer" id="user-drawer" data-position="right" data-align="end">
+            <div class="mdk-drawer__content">
+                <div class="mdk-drawer__inner" data-simplebar data-simplebar-force-enabled="true">
+                    <nav class="drawer drawer--light">
+                        <div class="drawer-spacer drawer-spacer-border">
+                            <div class="media align-items-center">
+                                <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid rounded-circle mr-2" width="35" alt="">
+                                <div class="media-body">
+                                    <a href="#" class="h5 m-0">My Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="drawer-spacer bg-body-bg">
+                            <div class="d-flex justify-content-between mb-2">
+                            </div>
+                            <div class="d-flex justify-content-between">
+                            </div>
+                        </div>
+                        <!-- MENU -->
+                        <ul class="drawer-menu" id="userMenu" data-children=".drawer-submenu">
+                            <li class="drawer-menu-item">
+                                <a href="account.html"><i class="material-icons">lock</i><span class="drawer-menu-text"> Account</span>
+      </a>
+                            </li>
+                            <li class="drawer-menu-item">
+                                <a href="profile.html">
+        <i class="material-icons">account_circle</i>
+        <span class="drawer-menu-text"> Profile</span>
+      </a>
+                            </li>
+                            <li class="drawer-menu-item">
+                                <a href="login.html">
+        <i class="material-icons">exit_to_app</i>
+        <span class="drawer-menu-text"> Logout</span>
+      </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- // END drawer -->
+    </div>
+    <!-- // END drawer-layout -->
+
+    <!-- Modal Starts -->
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="largeModalLabel">Missing Person Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        {% csrf_token %}
+                            <div class="form-row">
+                                
+                            </div>
+                            <div class="form-row">
+                              
+                              <div class="form-group col-md-4">
+                               <label for="birthdate">Birth Date:</label>
+                               <input type="date" id="birthdate" name="birthdate">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                              <label for="height">Height (in feet)</label>
+                              <input type="text" id="height" name="height" placeholder="Enter your height">
+                              </div>
+                              <div class="form-group col-md-4">
+                               <label for="weight">Weight (in kg)</label>
+                              <input type="text" id="weight" name="weight" placeholder="Enter your weight">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                               <label for="feature">Distinguishing Feature </label>
+                              <textarea id="feature" name="feature" placeholder="How does the person looks?" style="height:50px"></textarea>
+                              </div>
+                              <div class="form-group col-md-4">
+                               <label for="birthmark">Birthmark (if any) </label>
+                              <textarea id="birthmark" name="birthmark" placeholder="Mention the birthmarks if any" style="height:50px"></textarea>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                              <label for="lastlocation">Last known location </label>
+                              <textarea id="lastlocation" name="lastlocation" placeholder="Where the person was last seen?" style="height:50px"></textarea>
+                              </div>
+                              <div class="form-group col-md-4">
+                               <label for="lastdate">Last seen date:</label>
+                               <input type="date" id="lastdate" name="lastdate">
+                              </div>
+                            </div>
+                              <hr>
+                              <h2>Person to contact if found</h2>
+                            <div class="form-row">
+                              <div class="form-group col-md-4"> 
+                              <label for="name">Name</label>
+                              <input type="text" id="fname" name="firstname" placeholder="Simran">
+                              </div>
+                              <div class="form-group col-md-4">
+                              <label for="lname">Last Name</label>
+                              <input type="text" id="lname" name="lastname" placeholder="Kapoor">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                            
+                              <div class="form-group col-md-4"> 
+                                <label for="email">Email<span style="color:red">*</span></label>
+                                <input type="text" placeholder="abc@gmail.com "email" required>
+                              </div>
+                              <div class="form-group col-md-4"> 
+                                <label for="phone">Enter your phone number:</label>
+                                 <input type="tel" id="phone" name="phone" placeholder="9756123478" required>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                                <label for="address"> Address</label>
+                                <textarea id="address" name="address" placeholder="House no., Nearest landmark, City, State, Pincode" style="height:50px"></textarea>
+                            </div>
+                          
+                               <input type="submit" value="Submit">
+                          
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Ends -->
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+
+    <!-- Vendor -->
+    <script src="{% static 'assets/vendor/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/moment.min.js' %}"></script>
+
+
+    <!-- APP -->
+    <script src="{% static 'assets/js/color_variables.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+
+
+    <script>
+        (function() {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+
+    <script src="{% static 'assets/vendor/morris.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/raphael.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/datepicker.js' %}"></script>
+
+    <script>
+        $(function() {
+            window.morrisDashboardChart = new Morris.Area({
+                element: 'morris-area-chart',
+                data: [{
+                        year: '2017-01',
+                        a: 6352.27
+                    },
+                    {
+                        year: '2017-02',
+                        a: 4309.98
+                    },
+                    {
+                        year: '2017-03',
+                        a: 1465.98
+                    },
+                    {
+                        year: '2017-04',
+                        a: 1298.25
+                    },
+                    {
+                        year: '2017-05',
+                        a: 3209
+                    },
+                    {
+                        year: '2017-06',
+                        a: 2083
+                    },
+                    {
+                        year: '2017-07',
+                        a: 1285.23
+                    },
+                    {
+                        year: '2017-08',
+                        a: 1289
+                    },
+                    {
+                        year: '2017-09',
+                        a: 4430
+                    },
+                    {
+                        year: '2017-10',
+                        a: 8921.19
+                    }
+                ],
+                xkey: 'year',
+                ykeys: ['a'],
+                labels: ['Earnings'],
+                lineColors: ['#fff'],
+                fillOpacity: '0.2',
+                gridEnabled: true,
+                gridTextColor: '#ffffff',
+                resize: true
+            });
+
+        });
+    </script>
+
+
+<!-- Email-Validation -->
+<script>
+    $(document).ready(function () {
+
+        $("#email-err").on("blur", function () {
+            var errtag = document.getElementById("Email");
+            var subtn = document.getElementById("submit-err");
+            var input = $(this).val();
+            var filter = /^[a-zA-Z]$/                    //     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;    = /^  $/
+
+            if (filter.test(input))
+            {
+                if (mail.length > 0)
+                {
+                    errtag.style = "display:none";
+                    subtn.disabled = false;
+                    //   alert("valid");
+                    $("#mobile-valid").removeClass("hidden");
+                    $("#folio-invalid").addClass("hidden");
+                }
+                else
+                {
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter Email";
+                    subtn.disabled = true;
+                    $("#folio-invalid").removeClass("hidden");
+                    $("#mobile-valid").addClass("hidden");
+                    return false;
+                }
+            }
+            else
+            {
+                subtn.disabled = true;
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please enter email@example.com";
+                $("#folio-invalid").removeClass("hidden");
+                $("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+
+</script>
+
+
+
+</body>
+
+</html>
+
+<script>
+    document.querySelector("body > div > div.mdk-drawer-layout__content > div > div.mdk-header-layout__content.top-navbar.mdk-header-layout__content--scrollable.h-100 > div > div:nth-child(16)")
+</script>
+
+<script> div > div.mdk-drawer-layout__content > div > div.mdk-header-layout__content.top-navbar.mdk-header-layout__content--;scrollable.h-100 > div > div;nth-child(16)</script>
+
+        

@@ -1,0 +1,325 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>D7B | FAQ's</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <link type="text/css" href="{% static 'assets/css/vendor-morris.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-datepicker.css' %}" rel="stylesheet">
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px"
+        data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!--header-layout-->
+            <div
+                class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!--header-->
+
+                {% include 'miniproject/header.html' %}
+
+                <!--content-->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+
+                    <!--0main content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div style="float: right;">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">FAQ' s</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="form-row">
+                                            <h1>FAQ's</h1>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <!-- Add Data -->
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <!-- <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                            <a class="nav-link active" id="v-pills-general-tab" data-toggle="pill" href="#v-pills-general" role="tab" aria-controls="v-pills-general" aria-selected="true">General</a>
+                                                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                                                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                                                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="accordion" id="accordionExample">
+                                                    <div class="accordion-item">
+                                                        <h3 class="accordion-header" id="headingOne">
+                                                            <button class="accordion-button" type="button"
+                                                                data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                                aria-expanded="true" aria-controls="collapseOne">
+                                                                What is a civil violation?
+                                                            </button>
+                                                        </h3>
+                                                        <div id="collapseOne" class="accordion-collapse collapse show"
+                                                            aria-labelledby="headingOne"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <h4>
+                                                                    A charge that is brought by the District Attorney,
+                                                                    but is civil in nature and not criminal. It is
+                                                                    punishable only by a fine or other sanctions (such
+                                                                    as license suspension in some cases). An example of
+                                                                    a civil violation is Possession of a Useable Amount
+                                                                    of Marijuana.</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="accordion-item">
+                                                        <h3 class="accordion-header" id="headingTwo">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                                What is a misdemeanor?
+                                                            </button>
+                                                        </h3>
+                                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                                            aria-labelledby="headingTwo"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <h4>
+                                                                    A misdemeanor is a crime with a maximum penalty of
+                                                                    one
+                                                                    year in jail and a $2,000.00 fine. In Maine, a
+                                                                    misdemeanor is a class “D” or “E” crime.</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="accordion-item">
+                                                        <h3 class="accordion-header" id="headingThree">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseThree" aria-expanded="false"
+                                                                aria-controls="collapseThree">
+                                                                What is a felony?
+                                                            </button>
+                                                        </h3>
+                                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                                            aria-labelledby="headingThree"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <h4>
+                                                                    A felony is a crime which carries with it a
+                                                                    potential
+                                                                    sentence of at least one year and one day in prison.
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="accordion-item">
+                                                        <h3 class="accordion-header" id="headingFour">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                                aria-expanded="false" aria-controls="collapseFour">
+                                                                How can I save myself from becoming a victim of fraud?
+                                                            </button>
+                                                        </h3>
+                                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                                            aria-labelledby="headingFour"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <h4>
+                                                                    Keep the following in mind to save yourself from
+                                                                    fraud:
+                                                                    <ul>
+                                                                        <li>Be suspicious of any email, website, or
+                                                                            person
+                                                                            asking
+                                                                            for financial information or passwords.</li>
+                                                                        <li>Don't click on suspect links or open email
+                                                                            attachments.</li>
+                                                                        <li>Regularly change passwords.</li>
+                                                                        <li>Review financial statements.</li>
+                                                                        <li>Install updates offered by your operating
+                                                                            system
+                                                                            and
+                                                                            software providers.</li>
+                                                                        <li>Update antivirus regularly.</li>
+                                                                    </ul>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="accordion-item">
+                                                        <h3 class="accordion-header" id="headingFive">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                                                                aria-expanded="false" aria-controls="collapseFive">
+                                                                What kind of passwords are more secure to protect my
+                                                                account from hackers?
+                                                            </button>
+                                                        </h3>
+                                                        <div id="collapseFive" class="accordion-collapse collapse"
+                                                            aria-labelledby="headingFive"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <h4>
+                                                                    Complex, long passwords are better, but they're only
+                                                                    useful in certain conditions. Howerver, complex
+                                                                    passwords are not enough to keep your profile
+                                                                    protected.
+                                                                    You need to:
+                                                                    <ul>
+                                                                        <li>Manage passwords safely by using a password
+                                                                            manager.</li>
+                                                                        <li>Turn on 2-step authentication wherever it's
+                                                                            available.</li>
+                                                                        <li>Make sure the sensitive websites you visit
+                                                                            (online
+                                                                            banking, online shopping, etc.) use an
+                                                                            encrypted
+                                                                            connection.</li>
+                                                                        <li>Keep your browser and software updated.</li>
+                                                                    </ul>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="accordion-item">
+                                                        <h3 class="accordion-header" id="headingSix">
+                                                            <button class="accordion-button collapsed" type="button"
+                                                                data-bs-toggle="collapse" data-bs-target="#collapseSix"
+                                                                aria-expanded="false" aria-controls="collapseSix">
+                                                                What can I do if I am a victim of online shopping fraud?
+                                                            </button>
+                                                        </h3>
+                                                        <div id="collapseSix" class="accordion-collapse collapse"
+                                                            aria-labelledby="headingSix"
+                                                            data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+                                                                <h4>
+                                                                    Gather all information you saved or printed when you
+                                                                    were ordering and call the store's customer service
+                                                                    department. Try to straighten things out directly.
+                                                                    If
+                                                                    the store refuses to consider your complaints, or
+                                                                    temporizes, or doesn't answer the phone, you better
+                                                                    talk
+                                                                    to your credit card company or best file a complaint
+                                                                    at
+                                                                    the cyber cell.</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Main Content closes -->
+            </div>
+        </div>
+        <!--// END drawer-layout__content-->
+
+        <!--LEFT DRAWER-->
+
+        {% include 'miniproject/sidebar.html' %}
+
+    </div>
+    <!-- // END drawer-layout -->
+
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+
+    <script>
+        (function () {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+
+    <script src="{% static 'assets/vendor/morris.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/raphael.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/datepicker.js' %}"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

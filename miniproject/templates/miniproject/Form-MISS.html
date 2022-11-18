@@ -1,0 +1,1235 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>D7B | Missing Person Report Filed</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-datatables.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/vendor/buttons/buttons.min.css' %}" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px" data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!--header-layout-->
+            <div class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!--header--> 
+
+                {% include 'miniproject/header.html' %}
+
+                <!--content-->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+                    
+                    <!--0main content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div style="float: right;">           
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Missing Person Report</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if messages %}
+                            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                {% for message in messages %}
+                                    <strong {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h4 class="card-title" style="text-align:left">
+                                            Missing Person Report List
+                                        </h4>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#largeModal">File Missing Person Report</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="data-table" class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline" style="table-layout: auto">
+                                        <thead id="header">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Gender</th>
+                                                <th>Hair Colour<br>and Birthmark</th>
+                                                <th>Last Seen On</th>
+                                                <th>Last Seen At</th>
+                                                <th>Status</th>
+                                                <th>Name</th>
+                                                <th>Gender</th>
+                                                <th>Hair Colour<br>and Birthmark</th>
+                                                <th>Last Seen On</th>
+                                                <th>Last Seen At</th>
+                                                <th>Status</th>
+                                            </tr>
+                                            <tr>
+                                                <td id="sort0"></td>
+                                                <td id="sort1"></td>
+                                                <td id="sort2"></td>
+                                                <td id="sort3"></td>
+                                                <td id="sort4"></td>
+                                                <td id="sort5"></td>
+                                                <td id="sort6"></td>
+                                                <td id="sort7"></td>
+                                                <td id="sort8"></td>
+                                                <td id="sort9"></td>
+                                                <td id="sort10"></td>
+                                                <td id="sort11"></td>
+                                                <!-- <td id="sort12"></td>
+                                                <td id="sort13"></td>
+                                                <td id="sort14"></td>
+                                                <td id="sort15"></td>
+                                                <td id="sort16"></td>
+                                                <td id="sort17"></td>
+                                                <td id="sort18"></td>
+                                                <td id="sort19"></td>
+                                                <td id="sort20"></td>
+                                                <td id="sort21"></td> -->
+                                            </tr>
+                                        </thead>
+                                        {% if n == 1 %}
+                                            <tbody>
+                                                {% for i in All %}
+                                                <tr>
+                                                    <td>{{i.FName}}<br>{{i.LName}}</td>
+                                                    <td>{{i.Gender}}</td>
+                                                    <td>{{i.Hair_C}},<br>{{i.Birthmark}}</td>
+                                                    <td>{{i.Last_Date}}</td>
+                                                    <td>{{i.Last_City}},<br>{{i.Last_State}}</td>
+                                                    <td>{{i.Status}}</td>
+                                                    <td>{{i.FName}}<br>{{i.LName}}</td>
+                                                    <td>{{i.Gender}}</td>
+                                                    <td>{{i.Hair_C}}, {{i.Birthmark}}</td>
+                                                    <td>{{i.Last_Date}}</td>
+                                                    <td>{{i.Last_City}}, {{i.Last_State}}</td>
+                                                    <td>{{i.Status}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        {% endif %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--// END drawer-layout__content-->
+
+        <!--LEFT DRAWER-->
+        
+        {% include 'miniproject/sidebar.html' %}
+
+        <!-- // END drawer -->
+    </div>
+    <!-- // END drawer-layout -->
+
+
+    <!-- Modal Starts -->
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="largeModalLabel">Missing Person Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                
+                <form action="{% url 'missing-report' %}" method="post" id="needs-validation" novalidate>
+                {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name" class="col-form-label">First Name<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" pattern="[A-Za-z]{2,}" name="Fname" id="fname" placeholder="Enter First Name" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name" class="col-form-label">Last Name<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" pattern="[A-Za-z]{2,}" name="Lname" id="lname" placeholder="Enter Last Name" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="vicCount" class="col-form-label">Gender<span style="color:red"> *</span></label>
+                                <select class="form-control" id="gen" name="Gen" required>
+                                    <option value="" selected disabled>-- Select Option --</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="vicCount" class="col-form-label">Race<span style="color:red"> *</span></label>
+                                <select class="form-control" id="race" name="Race" required>
+                                    <option value="" selected disabled>-- Select Option --</option>
+                                    <option>Asian</option>
+                                    <option>Black</option>
+                                    <option>Brown</option>
+                                    <option>Hispanic/Latino</option>
+                                    <option>White</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="vicCount" class="col-form-label">Hair Colour<span style="color:red"> *</span></label>
+                                <select class="form-control" id="hair" name="Hair" required>
+                                    <option value="" selected disabled>-- Select Option --</option>
+                                    <option>Black</option>
+                                    <option>Blonde</option>
+                                    <option>Lt Brown</option>
+                                    <option>Brown</option>
+                                    <option>Sandy</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="vicCount" class="col-form-label">Eye Colour<span style="color:red"> *</span></label>
+                                <select class="form-control" id="eye" name="Eye" required>
+                                    <option value="" selected disabled>-- Select Option --</option>
+                                    <option>Blue</option>
+                                    <option>Brown</option>
+                                    <option>Green</option>
+                                    <option>Grey</option>
+                                    <option>Hazel</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="vicCount" class="col-form-label">Date of Birth<span style="color:red"> *</span></label>
+                                <input type="date" class="form-control" name="DOB" id="dob" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="describe" class="col-form-label">Birthmark (if any)<span style="color:red"> *</span></label>
+                                <textarea type="text" class="form-control" name="Birthmark" id="birthmark" placeholder="Enter any distinguishing features" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name" class="col-form-label">Height (in cm)<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" pattern="[0-9]{1,}" name="Height" id="height" placeholder="Enter Height" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name" class="col-form-label">Weight (in kg)<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" pattern="[0-9\.]{1,}" name="Weight" id="weight" placeholder="Enter Weight" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="vicCount" class="col-form-label">Last Seen Date<span style="color:red"> *</span></label>
+                                <input type="date" class="form-control" name="Lastdate" id="lastdate" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="describe" class="col-form-label">Last Seen Location (City)<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" pattern="[A-Za-z]{1,}" name="Lastlocc" id="lastlocc" placeholder="City name" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="describe" class="col-form-label">Last Seen Location (State)<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" pattern="[A-Za-z]{1,}" name="Lastlocs" id="lastlocs" placeholder="State name" required>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="sel1">Case Type<span style="color:red"> *</span></label>
+                                <select class="custom-select d-block my-3" id="incident" name="Incident" required>
+                                    <option selected disabled value="">-- Select Option --</option>
+                                    <option>Endangered Runaway</option>
+                                    <option>Family Abduction</option>
+                                    <option>Lost Injured Missing</option>
+                                    <option>Non Family Abduction</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid Hair Colour
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                            <button type="submit" id="submit-err" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Ends -->
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+
+    <script>
+        (function() {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        "use strict";
+        window.addEventListener("load", function() {
+            var form = document.getElementById("needs-validation");
+            form.addEventListener("submit", function(event) {
+                if (form.checkValidity() == false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add("was-validated");
+            }, false);
+        }, false);
+    }());
+</script>
+
+
+    <script src="{% static 'assets/vendor/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'assets/vendor/dataTables.bootstrap4.js' %}"></script>
+
+    <script src="{% static 'assets/vendor/buttons/buttons.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/buttons/jszip.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/buttons/pdfmake.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/buttons/vfs_fonts.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/buttons/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/buttons/buttons.print.min.js' %}"></script>
+
+
+    <script>
+        $(document).ready(function(){
+        $("#datatable").DataTable()
+        $('#data-table thead tr')
+        var table = $('#data-table').dataTable({
+            scrollX: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            lengthChange:!1,
+            dom: 'Bfrtip',
+            buttons:[
+                "excel","csv","print",
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }
+            ],
+            initComplete: function () {
+
+                this.api().columns(0).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort0')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(1).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort1')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(2).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort2')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(3).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort3')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(4).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort4')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(5).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort5')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(6).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort6')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(7).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort7')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(8).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort8')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(9).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort9')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(10).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort10')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+                this.api().columns(11).every( function ()
+                {
+                    var column = this;
+                    var select = $(' <select class="form-control"><option value="">All</option></select>')
+                        .appendTo('#data-table thead tr #sort11')
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                })
+            }
+        });
+    });
+    </script>
+
+
+<!-- First Name Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#fname").on("blur", function ()
+        {
+            var errtag = document.getElementById("fname-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#fname").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#username-valid").removeClass("hidden");
+                //$("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 2)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z,a-z).";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Last Name Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#lname").on("blur", function ()
+        {
+            var errtag = document.getElementById("lname-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#lname").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 2)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z,a-z).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Race Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#race").on("blur", function ()
+        {
+            var errtag = document.getElementById("race-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('race');
+
+            if (mail.value)
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#mobile-valid").removeClass("hidden");
+                //$("#folio-invalid").addClass("hidden");
+            }
+            else
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select one option";
+                subtn.disabled = true;
+                //$("#folio-invalid").removeClass("hidden");
+                //$("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- Gender Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#gen").on("blur", function ()
+        {
+            var errtag = document.getElementById("gen-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('gen');
+
+            if (mail.value)
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#mobile-valid").removeClass("hidden");
+                //$("#folio-invalid").addClass("hidden");
+            }
+            else
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select one option";
+                subtn.disabled = true;
+                //$("#folio-invalid").removeClass("hidden");
+                //$("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- Hair Colour Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#hair").on("blur", function ()
+        {
+            var errtag = document.getElementById("hair-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('hair');
+
+            if (mail.value)
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#mobile-valid").removeClass("hidden");
+                //$("#folio-invalid").addClass("hidden");
+            }
+            else
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select one option";
+                subtn.disabled = true;
+                //$("#folio-invalid").removeClass("hidden");
+                //$("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- Eye Colour Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#eye").on("blur", function ()
+        {
+            var errtag = document.getElementById("eye-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('eye');
+
+            if (mail.value)
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#mobile-valid").removeClass("hidden");
+                //$("#folio-invalid").addClass("hidden");
+            }
+            else
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select one option";
+                subtn.disabled = true;
+                //$("#folio-invalid").removeClass("hidden");
+                //$("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- Birthmark Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#birthmark").on("blur", function ()
+        {
+            var errtag = document.getElementById("birthmark-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#birthmark").val();
+            var filter = /^a-zA-Z0-9'\.\-\s\,$/;
+
+            if (locs.length < 2)
+            {
+                subtn.disabled = true;
+                errtag.style = "display:block;color:red";                    
+                errtag.innerHTML = "This is a required field.";
+                //$("#folios-invalid").removeClass("hidden");
+                //$("#username-valid").addClass("hidden");
+                return false;
+            }
+            else
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#mobile-valid").removeClass("hidden");
+                //$("#folio-invalid").addClass("hidden");
+            }
+        });
+    });
+</script>
+
+<!-- Height Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#height").on("blur", function ()
+        {
+            var errtag = document.getElementById("height-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#height").val();
+            var filter = /^[0-9]{1,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#username-valid").removeClass("hidden");
+                //$("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter numbers only (0-9).";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Weight Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#weight").on("blur", function ()
+        {
+            var errtag = document.getElementById("weight-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#weight").val();
+            var filter = /^[0-9]{1,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#username-valid").removeClass("hidden");
+                //$("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter numbers only (0-9).";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Last Seen City Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#lastlocc").on("blur", function ()
+        {
+            var errtag = document.getElementById("lastlocc-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#lastlocc").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                    errtag.style = "display:none";
+                    subtn.disabled = false;
+                    //   alert("valid");
+                    $("#username-valid").removeClass("hidden");
+                    $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 2)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z,a-z).";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Last Seen State Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#lastlocs").on("blur", function ()
+        {
+            var errtag = document.getElementById("lastlocs-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#lastlocs").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                    errtag.style = "display:none";
+                    subtn.disabled = false;
+                    //   alert("valid");
+                    // $("#username-valid").removeClass("hidden");
+                    // $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 2)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {   
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z,a-z).";
+                    //$("#folios-invalid").removeClass("hidden");
+                    //$("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Incident Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#incident").on("blur", function ()
+        {
+            var errtag = document.getElementById("incident-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('incident');
+
+            if (mail.value)
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#mobile-valid").removeClass("hidden");
+                //$("#folio-invalid").addClass("hidden");
+            }
+            else
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select one option";
+                subtn.disabled = true;
+                //$("#folio-invalid").removeClass("hidden");
+                //$("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- Dato-Of-Birth Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#dob").on("blur", function ()
+        {
+            var errtag = document.getElementById("dob-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('dob').value;
+
+            if (!Date.parse(mail))
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select a date";
+                subtn.disabled = true;
+                //$("#folio-invalid").removeClass("hidden");
+                //$("#mobile-valid").addClass("hidden");
+                return false;
+            }
+            else
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                //$("#mobile-valid").removeClass("hidden");
+                //$("#folio-invalid").addClass("hidden");
+            }
+        });
+    });
+</script>
+
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#dob').attr('max',today);
+</script>
+
+
+<!-- Last Seen Dato Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#lastdate").on("blur", function ()
+        {
+            var errtag = document.getElementById("lastdate-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('lastdate').value;
+
+            if (!Date.parse(mail))
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select a date";
+                subtn.disabled = true;
+                // $("#folio-invalid").removeClass("hidden");
+                // $("#mobile-valid").addClass("hidden");
+                return false;
+            }
+            else
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                // $("#mobile-valid").removeClass("hidden");
+                // $("#folio-invalid").addClass("hidden");
+            }
+        });
+    });
+</script>
+
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#lastdate').attr('max',today);
+</script>
+
+
+</body>
+
+</html>

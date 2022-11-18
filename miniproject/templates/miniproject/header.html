@@ -1,0 +1,25 @@
+{% load static %}
+
+                <div class="mdk-header js-mdk-header bg-primary" data-fixed>
+                    <div class="mdk-header__content">
+
+                        <nav class="navbar navbar-expand-md bg-primary navbar-dark d-flex-none">
+                            <button class="btn btn-link text-white pl-0" type="button" data-toggle="sidebar">
+                                <i class="material-icons align-middle md-36">dehaze</i>
+                            </button>
+                            <div class="page-title m-0"></div>
+
+                            <div class="collapse navbar-collapse" id="mainNavbar">
+                                <ul class="navbar-nav ml-auto align-items-center">
+                                    <li class="nav-item nav-divider">
+                                        <li class="nav-item">
+                                            <a href="{% url 'logout' %}" class="nav-link dropdown-toggle dropdown-clear-caret">
+                                                <i class="material-icons md-18 align-middle">exit_to_app</i> Logout
+                                            </a>
+                                        </li>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>

@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Crime Portal | Sign-In Page</title>
+
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+        <meta name="robots" content="noindex">
+
+        <!-- App CSS -->
+        <link type="text/css" href="{%  static 'assets/css/app.css' %}" rel="stylesheet">
+        <link type="text/css" href="{%  static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+        <!-- Simplebar -->
+        <link type="text/css" href="{%  static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-has-scrolling-region>
+            <div class="mdk-drawer-layout__content mdk-header-layout__content--scrollable" style="overflow-y: auto;" data-simplebar data-simplebar-force-enabled="true">
+
+                <div class="container h-vh d-flex justify-content-center align-items-center flex-column">
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                        <a href="{% url 'home-page' %}" class="drawer-brand-circle mr-2">C</a>
+                        <h2 class="ml-2 text-bg mb-0"><strong>Sign In</strong></h2>
+                    </div>
+                    <div class="row w-100 justify-content-center">
+
+                        {% if messages %}
+                            <div class="alert alert-{% for message in messages %}{{ message.tags }}{% endfor %} alert-dismissable fade show" role="alert">
+                                {% for message in messages %}
+                                    <strong {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="card card-login mb-3">
+                            <div class="card-body">            
+                                <form action="{% url 'login' %}" method="post" id="needs-validation" novalidate>
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <div class="input-group input-group--inline">
+                                            <div class="input-group-addon">
+                                                <i class="material-icons">person_outline</i><!--account_circle</i>-->
+                                            </div>
+                                            <input type="text" id="Email" class="form-control" placeholder="Enter Username" 
+                                                pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+" name="username" required>
+                                            <p style="display: none;" id="email-err"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="d-flex">
+                                            <label>Password</label>
+                                        </div>
+                                        <div class="input-group input-group--inline">
+                                            <div class="input-group-addon">
+                                                <i class="material-icons">lock_outline</i>
+                                            </div>
+                                            <input type="password" id="Pswd" class="form-control" name="password" placeholder="Enter Password" required>
+                                            <i class="material-icons" id="eye">visibility</i>
+                                            <p style="display: none;" id="pswd-err"></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <span class="ml-auto"><a href="{% url 'fpemailpage' %}">Forgot password?</a></span>
+                                    </div> <br>
+                                    <div  class="text-center">
+                                        <button type="submit" style="align-self: center;" class="btn btn-primary" id="submit-err">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <span class="mr-2">Don't have an account?</span>
+                        <a href="{% url 'register' %}">Sign Up</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    
+        <!-- jQuery -->
+        <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+        <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                "use strict";
+                window.addEventListener("load", function() {
+                    var form = document.getElementById("needs-validation");
+                    form.addEventListener("submit", function(event) {
+                        if (form.checkValidity() == false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add("was-validated");
+                    }, false);
+                }, false);
+            }());
+        </script>
+
+        <script>
+            $('#eye').on('click', function() {
+                var x = document.getElementById("Pswd");
+                if (x.type === "password") {
+                    x.type = "text";
+                    this.innerHTML = "visibility_off"
+                }
+                else {
+                    x.type = "password";
+                    this.innerHTML = "visibility"
+                }
+            })
+        </script>
+    
+        <script>
+            (function() {
+                'use strict';
+
+                // Self Initialize DOM Factory Components
+                domFactory.handler.autoInit();
+            });
+        </script>
+
+
+    </body>
+
+</html>

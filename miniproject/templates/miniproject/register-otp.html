@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Crime Portal | Verify OTP</title>
+
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+        <meta name="robots" content="noindex">
+
+        <!-- App CSS -->
+        <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+        <!-- Simplebar -->
+        <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-has-scrolling-region>
+            <div class="mdk-drawer-layout__content mdk-header-layout__content--scrollable" style="overflow-y: auto;" data-simplebar data-simplebar-force-enabled="true">
+
+
+                <div class="container h-vh d-flex justify-content-center align-items-center flex-column">
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                        <a href="{% url 'home-page' %}" class="drawer-brand-circle mr-2">C</a>
+                        <h2 class="ml-2 text-bg mb-0"><strong>Verify OTP</strong></h2>
+                    </div>
+                    <div class="row w-100 justify-content-center">
+                        <div class="card card-signup mb-3">
+
+                            {% if messages %}
+                                <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                    {% for message in messages %}
+                                        <strong {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="row w-100 justify-content-center">
+                                    <h4>Verify your email</h4> <br>
+                                    <p class="justify-content-center">Please enter the 4 digit code sent to your email -</p><strong>{{ request.session.email }}</strong>
+                                </div> <br><br>
+                                <form action="{% url 'verify-otp' %}" id="needs-validation" novalidate method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="form-group col-md-3">
+                                            <div class="input-group input-group--inline">
+                                                <input type="text" class="form-control" name="t1" onkeyup="moveToNext(this, 2)" required 
+                                                    id="digit1-input" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div class="input-group input-group--inline">
+                                                <input type="text" class="form-control" name="t2" onkeyup="moveToNext(this, 3)" required 
+                                                    id="digit1-input" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div class="input-group input-group--inline">
+                                                <input type="text" class="form-control" name="t3" onkeyup="moveToNext(this, 4)" required 
+                                                    id="digit1-input" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div class="input-group input-group--inline">
+                                                <input type="text" class="form-control" name="t4" required 
+                                                    id="digit1-input" maxlength="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="text-center">
+                                        <button type="submit" id="submit-err" class="btn btn-primary">Verify</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    
+        <!-- jQuery -->
+        <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+        <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                "use strict";
+                window.addEventListener("load", function() {
+                    var form = document.getElementById("needs-validation");
+                    form.addEventListener("submit", function(event) {
+                        if (form.checkValidity() == false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add("was-validated");
+                    }, false);
+                }, false);
+            }());
+        </script>
+
+        <script>
+            (function() {
+                'use strict';
+                domFactory.handler.autoInit();
+            });
+        </script>
+
+        <!-- -----------------------Location----------------------- -->
+        <script>
+            function moveToNext(t,e) {
+                0<t.value.length&&$("#digit"+e+"-input").focus()
+            }
+            $(".card-body input").keyup(function() {
+                var key = event.keyCode || event.charCode;
+                if( true ){
+                    $(this).next("input[type='text']").focus();
+                }
+            })
+        </script>
+
+    </body>
+
+</html>

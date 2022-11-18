@@ -1,0 +1,818 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>D7B | Wanted Person List</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <link type="text/css" href="{% static 'assets/css/vendor-morris.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-datepicker.css' %}" rel="stylesheet">
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px" data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!--header-layout-->
+            <div class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!--header--> 
+
+                {% include 'miniproject/header.html' %}
+
+                <!--content-->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+                    
+                    <!--0main content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div style="float: right;">           
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Wanted Criminal List</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if messages %}
+                            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                {% for message in messages %}
+                                    <strong {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h4 class="card-title" style="text-align:left">
+                                            Wanted Person List
+                                        </h4>
+                                    </div>
+                                    {% if request.session.is_user == False %}
+                                    <div class="form-group col-md-6">
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#largeModal">File Wanted Person</button>
+                                        </div>
+                                    </div>
+                                    {% endif %} 
+                                    <!-- <div class="form-group col-md-6">
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#largeModal">Add Wanted Person</button>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="text-center">Name</th>
+                                                <th scope="col" class="text-center">Age </th>
+                                                <th scope="col" class="text-center">Gender</th>
+                                                <th scope="col" class="text-center">Race</th>
+                                                <th scope="col" class="text-center">Total No. Of Victims</th>
+                                                <th scope="col" class="text-center">County and<br>State</th>
+                                                <th scope="col" class="text-center">Method of Killing</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if n == 1 %}
+                                                {% for i in All %}
+                                                <tr align="center">
+                                                    <td>{{i.Name}}</td>
+                                                    <td>{{i.Age}}</td>
+                                                    <td>{{i.Gender}}</td>
+                                                    <td>{{i.Race}}</td>
+                                                    <td>{{i.No_Of_Victims}}</td>
+                                                    <td>{{i.County}},<br>{{i.State}}</td>
+                                                    <td>{{i.MOKilling}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            {% else %}
+                                            <tr>
+                                                <td align="center" colspan="7"><strong>No Records</strong></td>
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--// END drawer-layout__content-->
+
+        <!--LEFT DRAWER-->
+                
+        {% include 'miniproject/sidebar.html' %}
+
+        <!-- // END drawer -->
+    </div>
+    <!-- // END drawer-layout -->
+
+    <!-- Modal Starts -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="largeModalLabel">Wanted Persons Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <form action="{% url 'wanted-report' %}" method="POST">
+                {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="name" class="col-form-label">Name of the Criminal<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="FName" id="name" placeholder="Enter Full Name" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid Name
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="age" class="col-form-label">Age<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="Age" id="age" placeholder="Enter Age" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid Age
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="sel1">Select Gender<span style="color:red"> *</span></label>
+                                <select class="form-control" name="Gender" id="gender" required>
+                                    <option value="" selected disabled>-- Select Option --</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select valid Gender
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>                              
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="fsel1">Select Race<span style="color:red"> *</span></label>
+                                <select class="form-control" id="s-race" name="S-race" required>
+                                    <option value="" selected disabled>-- Select Option --</option>
+                                    <option>Asian</option>
+                                    <option>Black</option>
+                                    <option>Brown</option>
+                                    <option>Hispanic/Latino</option>
+                                    <option>White</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select valid Race
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="maleVicCount" class="col-form-label">No. of Male Victims<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="MaleVicCount" id="maleVicCount" placeholder="Enter Male Victim Count" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid Male Victim Count
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="femaleVicCount" class="col-form-label">No. of Female Victims<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="FemaleVicCount" id="femaleVicCount" placeholder="Enter Female Victim Count" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid Female Victim Count
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="vicCount" class="col-form-label">Total no. of Victims<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="VicCount" id="totalVicCount" readonly placeholder="Enter Victim Count" required>
+                                <div class="invalid-feedback">
+                                    Looks bad!
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="county" class="col-form-label">County<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="County" id="county" placeholder="Enter County" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid County
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="state" class="col-form-label">State<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="State" id="state" placeholder="Enter State Abbreviation : eg - TX (Texas)" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid State
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="region" class="col-form-label">Region<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="Region" id="region" placeholder="Enter Region" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid Region
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="method" class="col-form-label">Method of Killing<span style="color:red"> *</span></label>
+                                <input type="text" class="form-control" name="Method" id="method" placeholder="Enter Method of Killing" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid Method of Killing
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" id="submit-err" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Ends -->
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+
+    <script>
+        (function() {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+<!-- Name Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#name").on("blur", function ()
+        {
+            var errtag = document.getElementById("name-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#name").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 2)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter first & last name with valid characters (A-Z,a-z).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Age Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#age").on("blur", function ()
+        {
+            var errtag = document.getElementById("age-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#age").val();
+            var filter = /^[0-9]{1,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+                
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter age in numbers (0-9).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Gender Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#gender").on("blur", function ()
+        {
+            var errtag = document.getElementById("gender-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('gender');
+
+            if (mail.value)
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#mobile-valid").removeClass("hidden");
+                $("#folio-invalid").addClass("hidden");
+            }
+            else
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select one option";
+                subtn.disabled = true;
+                $("#folio-invalid").removeClass("hidden");
+                $("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- S-race Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#s-race").on("blur", function ()
+        {
+            var errtag = document.getElementById("s-race-err");
+            var subtn = document.getElementById("submit-err");
+            var mail = document.getElementById('s-race');
+
+            if (mail.value)
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#mobile-valid").removeClass("hidden");
+                $("#folio-invalid").addClass("hidden");
+            }
+            else
+            {
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please select one option";
+                subtn.disabled = true;
+                $("#folio-invalid").removeClass("hidden");
+                $("#mobile-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- No-of-Victims Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#totalVicCount").on("blur", function ()
+        {
+            var errtag = document.getElementById("tVicC-err");
+            var subtn = document.getElementById("submit-err");
+            var t = $("#totalVicCount").val();
+            var t1 = $("#maleVicCount").val();
+            var t2 = $("#femaleVicCount").val();
+            var filter = /^[0-9]{1,}$/;
+
+            if (filter.test(t))
+            {
+                if (t.length < 1 )
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else if ( parseInt(t, 10) != parseInt(t1, 10) + parseInt(t2, 10))
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Male victim count and female victim count does not add up.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    errtag.style = "display:none";
+                    subtn.disabled = false;
+                    //   alert("valid");
+                    $("#username-valid").removeClass("hidden");
+                    $("#folios-invalid").addClass("hidden");
+                }
+            }
+            else
+            {
+                subtn.disabled = true;
+                errtag.style = "display:block;color:red";
+                errtag.innerHTML = "Please enter numbers only (0-9).";
+                $("#folios-invalid").removeClass("hidden");
+                $("#username-valid").addClass("hidden");
+                return false;
+            }
+        });
+    });
+</script>
+
+<!-- Male-Victims Validation maleVicCount-->
+<script>
+    $(document).ready(function ()
+    {
+        $("#maleVicCount").on("blur", function ()
+        {
+            var errtag = document.getElementById("mVicC-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#maleVicCount").val();
+            var filter = /^[0-9]{1,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+                
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter numbers only (0-9).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Female-Victims Validation maleVicCount-->
+<script>
+    $(document).ready(function ()
+    {
+        $("#femaleVicCount").on("blur", function ()
+        {
+            var errtag = document.getElementById("fVicC-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#femaleVicCount").val();
+            var filter = /^[0-9]{1,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+                
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter numbers  only (0-9).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- County Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#county").on("blur", function ()
+        {
+            var errtag = document.getElementById("county-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#county").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z,a-z).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- State Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#state").on("blur", function ()
+        {
+            var errtag = document.getElementById("state-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#state").val();
+            var filter = /^[A-Z]{2,2}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else if (locs.length < 2)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Enter a valid 2 letter Abbreviation";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Region Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#region").on("blur", function ()
+        {
+            var errtag = document.getElementById("region-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#region").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z,a-z).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Method Of Killing Validation -->
+<script>
+    $(document).ready(function ()
+    {
+        $("#method").on("blur", function ()
+        {
+            var errtag = document.getElementById("method-err");
+            var subtn = document.getElementById("submit-err");
+            var locs = $("#method").val();
+            var filter = /^[a-zA-Z]{2,}$/;
+
+            if (filter.test(locs))
+            {
+                errtag.style = "display:none";
+                subtn.disabled = false;
+                //   alert("valid");
+                $("#username-valid").removeClass("hidden");
+                $("#folios-invalid").addClass("hidden");
+            }
+            else
+            {
+                if (locs.length < 1)
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "This is a required field.";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+                else
+                {
+                    subtn.disabled = true;
+                    errtag.style = "display:block;color:red";
+                    errtag.innerHTML = "Please enter valid characters (A-Z,a-z).";
+                    $("#folios-invalid").removeClass("hidden");
+                    $("#username-valid").addClass("hidden");
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

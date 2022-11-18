@@ -1,0 +1,93 @@
+{% load static %}
+
+
+<div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+    <div class="mdk-drawer__content">
+        <div class="mdk-drawer__inner" data-simplebar data-simplebar-force-enabled="true">
+
+            <nav class="drawer  drawer--dark">
+                <div class="drawer-spacer">
+                    <div class="media align-items-center">
+                        <a href="{% url 'dashboard' %}" class="drawer-brand-circle mr-2">C</a>
+                        <div class="media-body">
+                            <a href="{% url 'dashboard' %}" class="h5 m-0 text-link">Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--HEADING-->
+                <!-- <div class="py-2 drawer-heading">
+                    Dashboard
+                </div> -->
+                <!--DASHBOARDS MENU--> 
+                <ul class="drawer-menu" id="dasboardMenu" data-children=".drawer-submenu">
+                    <li class="drawer-menu-item ">
+                        <a href="{% url 'fir-report' %}"><i class="material-icons">create</i><span class="drawer-menu-text">File an FIR</span></a>
+                    </li>
+                    <li class="drawer-menu-item">
+                        <a href="{% url 'missing-report' %}"><i class="material-icons">person_pin_circle</i><span class="drawer-menu-text">Missing Persons</span></a>
+                    </li>
+                    <li class="drawer-menu-item ">
+                        <a href="{% url 'wanted-report' %}"><i class="material-icons">priority_high</i><span class="drawer-menu-text">Wanted Criminals List</span></a>
+                    </li>
+                    {% if request.session.is_user == 'User' %}
+                    <li class="drawer-menu-item ">
+                        <a href="{% url 'feedback-form' %}"><i class="material-icons">question_answer</i><span class="drawer-menu-text">Feedback Form</span></a>
+                    </li>
+                    {% elif request.session.is_user == 'Admin' %}
+                    <li class="drawer-menu-item ">
+                        <a href="{% url 'feedback-form' %}"><i class="material-icons">question_answer</i><span class="drawer-menu-text">Feedback Form</span></a>
+                    </li>
+                    {% endif %}
+
+                    <hr>
+                    
+                    <li class="drawer-menu-item ">
+                        <a href="{% url 'emergency-contacts' %}"><i class="material-icons">call</i><span class="drawer-menu-text">Emergency Contacts</span></a>
+                    </li>
+                    <li class="drawer-menu-item ">
+                        <a href="{% url 'quick-links' %}"><i class="material-icons">format_list_bulleted</i><span class="drawer-menu-text">FAQ's</span></a>
+                    </li>
+                    <!-- <li class="drawer-menu-item ">
+                        <a href="{% url 'about-us' %}"><i class="material-icons">priority_high</i><span class="drawer-menu-text">About Us</span></a>
+                    </li> -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="mdk-drawer js-mdk-drawer" id="user-drawer" data-position="right" data-align="end">
+    <div class="mdk-drawer__content">
+        <div class="mdk-drawer__inner" data-simplebar data-simplebar-force-enabled="true">
+            <nav class="drawer drawer--light">
+                <div class="drawer-spacer drawer-spacer-border">
+                    <div class="media align-items-center">
+                        <img src="https://pbs.twimg.com/profile_images/928893978266697728/3enwe0fO_400x400.jpg" class="img-fluid rounded-circle mr-2" width="35" alt="">
+                        <div class="media-body">
+                            <a href="#" class="h5 m-0">My Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="drawer-spacer bg-body-bg">
+                    <div class="d-flex justify-content-between mb-2">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                    </div>
+                </div>
+                <!-- MENU -->
+                <ul class="drawer-menu" id="userMenu" data-children=".drawer-submenu">
+                    <li class="drawer-menu-item">
+                        <a href="account.html"><i class="material-icons">lock</i><span class="drawer-menu-text"> Account</span></a>
+                    </li>
+                    <li class="drawer-menu-item">
+                        <a href="profile.html"><i class="material-icons">account_circle</i><span class="drawer-menu-text"> Profile</span></a>
+                    </li>
+                    <li class="drawer-menu-item">
+                        <a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i><span class="drawer-menu-text"> Logout</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,237 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>D7B | Feedback</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <link type="text/css" href="{% static 'assets/css/vendor-morris.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-datepicker.css' %}" rel="stylesheet">
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-switch.css' %}" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px"
+        data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!--header-layout-->
+            <div
+                class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!--header-->
+
+                {% include 'miniproject/header.html' %}
+
+                <!--content-->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+
+                    <!--0main content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div style="float: right;">           
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Feedback</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="form-row">
+                                            <h1>Your Feedback Is Valuable To Us</h1>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form action="{% url 'feedback-form' %}" method="post" id="needs-validation" novalidate>
+                                        {% csrf_token %}
+                                        
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="reportCrime" class="col-form-label">Did you report a crime?<span style="color:red"> *</span></label><br>
+                                                    <input type="checkbox" name="ReportAdded" id="reportAdded" checked data-on-text="Yes" data-off-text="No">
+                                                    <div class="invalid-feedback">
+                                                        Looks Bad!
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="infoUseful" class="col-form-label">Is the information provided on the website useful?<span style="color:red"> *</span></label><br>
+                                                    <input type="checkbox" name="IsUseful" id="isUseful" checked data-on-text="Yes" data-off-text="No">
+                                                    <div class="invalid-feedback">
+                                                        Looks Bad!
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="reportCrime" class="col-form-label">Was navigating the website convenient?<span style="color:red"> *</span></label><br>
+                                                    <input type="checkbox" name="Navigation" id="navigation" checked data-on-text="Yes" data-off-text="No">
+                                                    <div class="invalid-feedback">
+                                                        Looks Bad!
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="infoUseful" class="col-form-label">Did you face any problem?<span style="color:red"> *</span></label><br>
+                                                    <input type="checkbox" name="ProblemFaced" id="problemFaced" checked data-on-text="Yes" data-off-text="No">
+                                                    <div class="invalid-feedback">
+                                                        Looks Bad!
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="reportCrime" class="col-form-label">Would you suggest any improvements for the website?<span style="color:red"> *</span></label><br>
+                                                    <textarea class="form-control" id="improvement" name="Improvement"></textarea>
+                                                    <div class="invalid-feedback">
+                                                        Looks Bad!
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="infoUseful" class="col-form-label">If yes, please mention them below : <span style="color:red"> *</span></label><br>
+                                                    <textarea class="form-control" id="problemElaborate" name="ProblemElaborate"></textarea>
+                                                    <div class="invalid-feedback">
+                                                        Looks Bad!
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="fsel1">What is your overall impression of the website?<span style="color:red"> *</span></label>
+                                                    <select class="form-control" id="impression" name="Impression" required>
+                                                        <option value="" selected disabled>-- Select Option --</option>
+                                                        <option>Excellent</option>
+                                                        <option>Very Good</option>
+                                                        <option>Good</option>
+                                                        <option>Bad</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select valid Race
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <button type="submit" id="submit-err" class="btn btn-primary" style="float: right;">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Main Content closes -->
+            </div>
+        </div>
+        <!--// END drawer-layout__content-->
+
+        <!--LEFT DRAWER-->
+        
+        {% include 'miniproject/sidebar.html' %}
+
+    </div>
+    <!-- // END drawer-layout -->
+
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+
+    <script>
+        (function () {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+
+    <script src="{% static 'assets/vendor/morris.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/raphael.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/datepicker.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-switch.min.js' %}"></script>
+
+    <script>
+        $("input[type='checkbox']").bootstrapSwitch();
+    </script>
+
+</body>
+
+</html>

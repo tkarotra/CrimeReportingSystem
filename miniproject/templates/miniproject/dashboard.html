@@ -1,0 +1,564 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>D7B | Dashboard</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/images/favicon.png' %}">
+    <link type="text/css" href="{% static 'assets/css/vendor-morris.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/vendor-bootstrap-datepicker.css' %}" rel="stylesheet">
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'assets/css/app.rtl.css' %}" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-responsive-width="992px"
+        data-has-scrolling-region>
+
+        <div class="mdk-drawer-layout__content">
+            <!--header-layout-->
+            <div
+                class="mdk-header-layout js-mdk-header-layout  mdk-header--fixed  mdk-header-layout__content--scrollable">
+                <!--header-->
+
+                {% include 'miniproject/header.html' %}
+
+                <!--content-->
+                <div class="mdk-header-layout__content top-navbar mdk-header-layout__content--scrollable h-100">
+
+                    <!--0main content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div style="float: right;">           
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if messages %}
+                            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                {% for message in messages %}
+                                    <strong {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="form-row">
+                                            <h1>Ways to prevent crime</h1>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <div class="owl-carousel owl-theme">
+
+                                                <div class="card card-product">
+                                                    <img src="{% static 'assets/images/Image-5.jpg' %}"
+                                                        alt="Personal Safety" class="card-img-top" width="100">
+                                                    <div class="card-body">
+                                                        <a class="h4 text-primary-dark mb-0">Using Electronics - MP3
+                                                            Player & Cell Phones
+                                                        </a>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                            data-target="#Modal5">
+                                                            Click here for more info
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-product">
+                                                    <img src="{% static 'assets/images/Image-6.jpg' %}"
+                                                        alt="Personal Safety" class="card-img-top" width="100">
+                                                    <div class="card-body">
+                                                        <a class="h4 text-primary-dark mb-0">Strolling -
+                                                            <br>Day and Night
+                                                        </a>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                            data-target="#Modal6">
+                                                            Click here for more info
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-product">
+                                                    <img src="{% static 'assets/images/Image-1.jpg' %}"
+                                                        alt="Personal Safety" class="card-img-top" width="100">
+                                                    <div class="card-body">
+                                                        <a class="h4 text-primary-dark mb-0">Ways to
+                                                            Increase Your Personal Safety</a>
+                                                        <p class="card-text">
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                                data-target="#Modal1">
+                                                                Click here for more info
+                                                            </button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-product">
+                                                    <img src="{% static 'assets/images/Image-4.jpg' %}"
+                                                        alt="Personal Safety" class="card-img-top" width="100">
+                                                    <div class="card-body">
+                                                        <a class="h4 text-primary-dark mb-0">Prevent Theft
+                                                            of Unattended Packages at Your Building
+                                                        </a>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                            data-target="#Modal4">
+                                                            Click here for more info
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-product">
+                                                    <img src="{% static 'assets/images/Image-3.jpg' %}"
+                                                        alt="Personal Safety" class="card-img-top" width="100">
+                                                    <div class="card-body">
+                                                        <a class="h4 text-primary-dark mb-0">Smart Phone
+                                                            Users
+                                                            BEWARE!
+                                                        </a>
+                                                        <p class="card-text">
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                                data-target="#Modal3">
+                                                                Click here for more info
+                                                            </button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-product">
+                                                    <img src="{% static 'assets/images/Image-2.jpg' %}"
+                                                        alt="Personal Safety" class="card-img-top" width="100">
+                                                    <div class="card-body">
+                                                        <a class="h4 text-primary-dark mb-0">Take Crime
+                                                            Prevention To Work</a>
+                                                        <p class="card-text">
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                                data-target="#Modal2">
+                                                                Click here for more info
+                                                            </button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- Carousel ends -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Count of Different Types of Missing Reports</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <canvas height="325px" id="pie"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Count of Wanted Criminals Region-Wise</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <canvas height="300px" id="line"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Count of Criminals Age Group-Wise</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <canvas height="325px" id="doughnut"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Content closes -->
+            </div>
+        </div>
+        <!--// END drawer-layout__content-->
+
+        <!--LEFT DRAWER-->
+        
+        {% include 'miniproject/sidebar.html' %}
+
+    </div>
+    <!-- // END drawer-layout -->
+
+    <!-- Modal starts -->
+
+    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Ways to Increase Your Personal Safety</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Be AWARE of your surroundings at all times and trust your INSTINCTS.</li>
+                        <li>Stay in well lit, populated pathways. Avoid shortcuts.
+                            Travel in groups. There's always safety in numbers.</li>
+                        <li>Walk with your head upright. Make eye contact. Thieves often target victims who are not
+                            paying attention to their surroundings or who are looking down.</li>
+                        <li>Pay attention to your surroundings when using electronics on the streets, subways & buses.
+                            Don't TUNE yourself out. DON'T WALK AND TEXT.</li>
+                        <li>Before entering your apartment building, have your keys ready. Don't hold doors for anyone
+                            whom you don't know.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Take Crime Prevention To Work</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Keep your purse, wallet, keys, or other valuable items with you at all times or locked in a
+                            drawer or closet. Don't have the key? Check with your office manager to order a key.</li>
+                        <li>Check the identity of any strangers who are in your office or in the hallway- ask whom they
+                            are visiting and if you can help them find that person.</li>
+                        <li>Food delivery/Fed Ex/delivery person etc. should always stop at the reception desk so that
+                            they can be announced.</li>
+                        <li>Be discreet. Don't advertise your social life or vacation plans and those of your co-workers
+                            to people visiting or calling your place of work.</li>
+                        <li>Stepping out of your office? Lock your door even if you're going next door or to the
+                            restroom for a short time.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Smart Phone Users BEWARE!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Keep your smart phone on your person / coat or jacket, don't display when not in use
+                            especially while using mass transit. Use a hands free device.</li>
+                        <li>If you suspect you're being followed, stay away from deserted blocks and head for an area
+                            where people are or the nearest open store</li>
+                        <li>Password protect your device. Download APPs to your device that can help the police locate
+                            your device in the event of theft ("Find my iPhone", "Where's My Droid", "Look out," GotYa,"
+                            etc.) from your APP store.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal4" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Prevent Theft of Unattended Packages at Your Building
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Pick up packages as quickly as possible.</li>
+                        <li>Don't allow building access blindly.</li>
+                        <li>Request a signature or schedule a delivery.</li>
+                        <li>Ship your items where you have the best chance of receiving them, such as your office or
+                            place of work.</li>
+                        <li>Family members, trusted neighbors, or friends may be home when you are not.Consider asking
+                            them to accept packages on your behalf or hold them until you arrive.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal5" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Using Electronics - MP3
+                        Player & Cell Phones
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Pay attention to your surroundings, minimize the amount of time you talk on your cell phone
+                            in public places.</li>
+                        <li>If you suspect you are being followed, go into an open store or a Public Safety Safe Haven
+                            and have the clerk call the Police or Public Safety right-away.</li>
+                        <li>Keep all electronic devices in an inside jacket pocket. Avoid clipping them onto outer
+                            garments or displaying them anywhere visible.</li>
+                        <li>If your cell phone is stolen, call your carrier and report the theft. Request that an alert
+                            be placed on the phone, preventing its use.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Modal6" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="defaultModalLabel">Strolling - Day and Night
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Stick to well-lighted, well-traveled streets. Avoid shortcuts through wooded areas, parking
+                            lots, or alleys.</li>
+                        <li>Take the safest route to and from schools, stores, or your friends' houses. Know where to go
+                            for help if you need it.</li>
+                        <li>Don't display your cash or any other inviting targets like pagers, cell phones, hand-held
+                            electronic games, or expensive jewelry and clothing.</li>
+                        <li>Carry your backpack or purse close to your body and keep it closed. Just carrying a wallet?
+                            Put it inside your coat or front pants pocket, not in your back pocket or in your backpack.
+                        </li>
+                        <li>If you think someone is following you, change direction or cross the street. If they're
+                            still there, move quickly toward an open store or restaurant or a lighted house. Don't be
+                            afraid to yell for help.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal ends -->
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <!-- DOM Factory -->
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- MDK -->
+
+    <script src="{% static 'assets/js/chartjs.min.js' %}"></script>
+
+    <script>
+        const config1 = {
+            type: 'doughnut',
+            data: {
+                labels: ['< 18', '18-24', '25-44', '45-64', '65 +'],
+                datasets: [{
+                    label: 'Suspects Age Group',
+                    data: ['{{l18}}', '{{b1824}}', '{{b2544}}', '{{b4564}}', '{{p65}}'],
+                    backgroundColor: [
+                    "#34c38f", "#1c84ee", "#ef6767", "#16daf1", "#ffcc5a"
+                    // '#86e3ce', '#d0e6a5', '#ffdd94', '#fa897b', '#ccabd8'
+                    ],
+                    hoverOffset: 4
+                }]
+            }
+        };
+
+        const doughnut = new Chart(
+            document.getElementById('doughnut'),
+            config1
+        );
+    </script>
+<!-- {% for i in pie %} {{ i.S_age }}, {% endfor %}                                     {% for i in pie %} {{ i.count }}, {% endfor %} -->
+
+    <script>
+        const labels = [
+          'South',
+          'Midwest',
+          'West',
+        ];
+      
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Wanted Criminals by Region',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)'
+            ],
+            borderWidth: 1,
+            data: ['{{south}}', '{{midwest}}', '{{west}}'],
+          }]
+        };
+        const config2 = {
+            type: 'bar',
+            data: data,
+            maintainAspectRatio: false,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+
+        const line = new Chart(
+            document.getElementById('line'),
+            config2
+        );
+    </script>
+
+    <script>
+        const config3 = {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Endangered Runaway',
+                    'Non Family Abduction',
+                    'Lost Injured Missing'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: ['{{er}}', '{{nfa}}', '{{lim}}'],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+        };
+
+        const pie = new Chart(
+            document.getElementById('pie'),
+            config3
+        );
+    </script>
+
+    <script>
+        (function () {
+            'use strict';
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit()
+
+
+            // Connect button(s) to drawer(s)
+            var sidebarToggle = document.querySelectorAll('[data-toggle="sidebar"]')
+
+            sidebarToggle.forEach(function (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    var selector = e.currentTarget.getAttribute('data-target') || '#default-drawer'
+                    var drawer = document.querySelector(selector)
+                    if (drawer) {
+                        if (selector == '#default-drawer') {
+                            $('.container-fluid').toggleClass('container--max');
+                        }
+                        drawer.mdkDrawer.toggle();
+                    }
+                })
+            })
+        })()
+    </script>
+
+
+    <script src="{% static 'assets/vendor/morris.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/raphael.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/datepicker.js' %}"></script>
+
+    <script src="{% static 'assets/vendor/owl.carousel.min.js' %}"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            autoplay: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                480: {
+                    items: 2
+                },
+                768: {
+                    items: 5
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

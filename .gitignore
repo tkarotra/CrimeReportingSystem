@@ -1,0 +1,6 @@
+project/__pycache__
+miniproject/__pycache__
+miniproject/migrations
+env/
+db.sqlite3
+.env
